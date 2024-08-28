@@ -142,7 +142,11 @@ function Products() {
                   <p>{product.description}</p>
                   <p>${product.price}</p>
                   {product.image_url && (
-                    <img src={`http://localhost:5000/uploads/${product.image_url}`} alt={product.name} width='100' />
+                    <img
+                    src={product.image_url.startsWith('http') ? product.image_url : `http://localhost:5000${product.image_url}`}
+                    alt={product.name}
+                    width='100'
+                  />
                   )}
                   <button onClick={() => handleDeleteProduct(product.id)}>Delete Product</button>
                 </div>
@@ -151,6 +155,7 @@ function Products() {
           </div>
         ))}
       </div>
+
       <div className='add-item-container'>
         <h2>Add New Item</h2>
         <input
@@ -186,7 +191,7 @@ function Products() {
         />
         <input
           type='text'
-          placeholder='Image URL'
+          placeholder='Image URL (optional)'
           name='image_url'
           value={newProduct.image_url}
           onChange={handleNewProductChange}

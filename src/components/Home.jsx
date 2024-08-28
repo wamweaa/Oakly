@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, Button, Card, CardContent, Grid } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { keyframes } from '@mui/system';
 import ProductContainer from './ProductContainer'; // Ensure the path is correct
 
@@ -69,10 +69,15 @@ function Home({ onSearch }) {
       </Box>
 
       {/* Product Container Section */}
-      <ProductContainer />
+      <Box sx={{ padding: 3 }}>
+        <Typography variant="h4" component="h2" sx={{ marginBottom: 2 }}>
+          Featured Products
+        </Typography>
+        <ProductContainer />
+      </Box>
 
       {/* Testimonials Section */}
-
+      {/* Add content for Testimonials here */}
     </div>
   );
 }
