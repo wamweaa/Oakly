@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -13,11 +14,32 @@ function Products() {
     item_id: ''
   });
   const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetchUserData(token);
+    }
     fetchItems();
     fetchProducts();
   }, []);
+
+  const fetchUserData = async (token) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/user", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, // Add Authorization header
+        },
+      });
+      const data = await response.json();
+      setUserRole(data.role);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
 
   const fetchItems = async () => {
     try {
@@ -127,6 +149,11 @@ function Products() {
     }
   };
 
+  // Conditionally render the component based on user role
+  if (userRole !== 'admin') {
+    return null;
+  }
+
   return (
     <div>
       <div className='items-container'>
@@ -143,10 +170,10 @@ function Products() {
                   <p>${product.price}</p>
                   {product.image_url && (
                     <img
-                    src={product.image_url.startsWith('http') ? product.image_url : `http://localhost:5000${product.image_url}`}
-                    alt={product.name}
-                    width='100'
-                  />
+                      src={product.image_url.startsWith('http') ? product.image_url : `http://localhost:5000${product.image_url}`}
+                      alt={product.name}
+                      width='100'
+                    />
                   )}
                   <button onClick={() => handleDeleteProduct(product.id)}>Delete Product</button>
                 </div>

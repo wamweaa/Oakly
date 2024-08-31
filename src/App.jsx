@@ -7,6 +7,8 @@ import ProductContainer from './components/ProductContainer';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import UserProfile from './components/UserProfile';
+import Contact from './components/Contanct';
+import About from './components/About';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path='/contact' element={<Contact/>} />
+        <Route path='/about' element={<About/>}/>
         {/* Add more routes as needed */}
       </Routes>
       <Products/>

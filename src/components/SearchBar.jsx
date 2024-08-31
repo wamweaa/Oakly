@@ -1,40 +1,37 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { CiSearch } from "react-icons/ci";
+import { TextField, Button, Box } from '@mui/material';
+import { styled } from '@mui/system';
 
-function SearchBar({ onSearchResults }) {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBarContainer = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '20px',
+});
 
-  // Handle search input change
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+const SearchButton = styled(Button)({
+  marginLeft: '8px',
+});
 
-  // Perform search on button click
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/products/search`, {
-        params: { query: searchTerm }
-      });
-      onSearchResults(response.data);
-    } catch (error) {
-      console.error('Error searching products:', error);
-    }
+function SearchBar({ onSearch }) {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    onSearch(searchQuery);
   };
 
   return (
-    <div>
-      <div className='searchbar'>
-        <input
-          type="text"
-          placeholder='Search furniture'
-          className='search'
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-        <button className='search-button' onClick={handleSearch}><CiSearch /></button>
-      </div>
-    </div>
+    <SearchBarContainer>
+      <TextField
+        label="Search Products and Items"
+        variant="outlined"
+        fullWidth
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <SearchButton variant="contained" color="primary" onClick={handleSearch}>
+        Search
+      </SearchButton>
+    </SearchBarContainer>
   );
 }
 

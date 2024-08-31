@@ -2,7 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
 import { keyframes } from '@mui/system';
-import ProductContainer from './ProductContainer'; // Ensure the path is correct
+import Footer from './Footer';
+import Testimonials from './Testimonials';
+
 
 // Keyframes for animations
 const fadeIn = keyframes`
@@ -29,7 +31,7 @@ function Home({ onSearch }) {
   const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    navigate('/courses'); // Redirect to the courses page
+    navigate('/product-container'); // Redirect to the courses page
   };
 
   return (
@@ -64,20 +66,11 @@ function Home({ onSearch }) {
           sx={{ padding: '10px 20px', fontSize: '1.2rem', borderRadius: '50px' }}
           onClick={handleGetStartedClick}
         >
-          Get Started
+          Shop With Us!!
         </Button>
       </Box>
-
-      {/* Product Container Section */}
-      <Box sx={{ padding: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ marginBottom: 2 }}>
-          Featured Products
-        </Typography>
-        <ProductContainer />
-      </Box>
-
-      {/* Testimonials Section */}
-      {/* Add content for Testimonials here */}
+      <Testimonials/>
+      <Footer/>
     </div>
   );
 }
