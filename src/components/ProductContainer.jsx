@@ -5,7 +5,7 @@ import { Grid, Card, CardContent, CardMedia, Typography, Container, Button, Box 
 import { styled } from '@mui/material/styles';
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  maxWidth: 345,
+  maxWidth: 300, // Reduced size
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -26,22 +26,31 @@ const TruncatedDescription = styled(Typography)({
   marginBottom: '10px',
 });
 
-const StyledCardMedia = styled(CardMedia)({
-  height: 300,
+const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
+  height: 200, // Reduced height
   objectFit: 'cover',
   width: '100%',
-});
+}));
 
-const ProductImage = styled(CardMedia)({
-  height: 'auto',
-  width: '40%',
+const ProductImage = styled(CardMedia)(({ theme }) => ({
+  height: 300,
+  width: '100%',
   objectFit: 'cover',
   borderRadius: '10px',
-});
+  [theme.breakpoints.down('md')]: {
+    height: 250,
+  },
+  [theme.breakpoints.down('sm')]: {
+    height: 200,
+  },
+  [theme.breakpoints.down('xs')]: {
+    height: 150,
+  },
+}));
 
 const ProductDetails = styled(Box)(({ theme }) => ({
-  width: '60%',
-  paddingLeft: '20px',
+  width: '100%',
+  paddingLeft: theme.spacing(2),
   textAlign: 'left',
   display: 'flex',
   flexDirection: 'column',
@@ -123,9 +132,9 @@ function ProductContainer() {
   return (
     <ContainerWrapper>
       {!selectedProduct ? (
-        <Grid container spacing={4}>
+        <Grid container spacing={4} wrap="wrap">
           {products.map((product) => (
-            <Grid item key={product.id} xs={12} sm={6} md={4}>
+            <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
               <StyledCard onClick={() => handleProductClick(product)} style={{ cursor: 'pointer' }}>
                 {product.image_url && (
                   <StyledCardMedia
@@ -148,7 +157,7 @@ function ProductContainer() {
           ))}
         </Grid>
       ) : (
-        <Box display="flex" flexDirection="row" padding={2} alignItems="center">
+        <Box display="flex" flexDirection="column" alignItems="center" padding={2}>
           {selectedProduct.image_url && (
             <ProductImage
               component="img"
@@ -196,9 +205,9 @@ function ProductContainer() {
       {selectedProduct && relatedProducts.length > 0 && (
         <Box mt={4}>
           <Typography variant="h5" mb={2}>Related Products</Typography>
-          <Grid container spacing={4}>
+          <Grid container spacing={4} wrap="wrap">
             {relatedProducts.map((product) => (
-              <Grid item key={product.id} xs={12} sm={6} md={4}>
+              <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
                 <StyledCard onClick={() => handleProductClick(product)} style={{ cursor: 'pointer' }}>
                   {product.image_url && (
                     <StyledCardMedia
