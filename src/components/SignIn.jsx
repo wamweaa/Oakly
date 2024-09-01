@@ -25,7 +25,7 @@ export default function SignIn() {
     const password = data.get('password');
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/auth/login', { email, password });
+      const response = await axios.post('https://oakly-backend-1.onrender.com//auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
       navigate('/profile'); // Redirect to UserProfile
     } catch (error) {

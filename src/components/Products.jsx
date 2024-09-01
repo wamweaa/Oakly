@@ -27,7 +27,7 @@ function Products() {
 
   const fetchUserData = async (token) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/user", {
+      const response = await fetch("https://oakly-backend-1.onrender.com/api/user", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function Products() {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/items');
+      const response = await axios.get('https://oakly-backend-1.onrender.com/items');
       setItems(response.data);
     } catch (error) {
       console.error('Error fetching items:', error);
@@ -52,7 +52,7 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/products');
+      const response = await axios.get('https://oakly-backend-1.onrender.com/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -80,7 +80,7 @@ function Products() {
   const handleAddNewItem = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post('http://localhost:5000/items', { name: newItem }, {
+      const response = await axios.post('https://oakly-backend-1.onrender.com/items', { name: newItem }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -106,7 +106,7 @@ function Products() {
     formData.append('item_id', newProduct.item_id);
 
     try {
-      const response = await axios.post('http://localhost:5000/products', formData, {
+      const response = await axios.post('https://oakly-backend-1.onrender.com/products', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
@@ -123,7 +123,7 @@ function Products() {
   const handleDeleteItem = async (itemId) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/items/${itemId}`, {
+      await axios.delete(`https://oakly-backend-1.onrender.com/items/${itemId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -138,7 +138,7 @@ function Products() {
   const handleDeleteProduct = async (productId) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/products/${productId}`, {
+      await axios.delete(`https://oakly-backend-1.onrender.com/products/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -170,7 +170,7 @@ function Products() {
                   <p>${product.price}</p>
                   {product.image_url && (
                     <img
-                      src={product.image_url.startsWith('http') ? product.image_url : `http://localhost:5000${product.image_url}`}
+                      src={product.image_url.startsWith('http') ? product.image_url : `https://oakly-backend-1.onrender.com${product.image_url}`}
                       alt={product.name}
                       width='100'
                     />

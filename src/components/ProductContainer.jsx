@@ -81,7 +81,7 @@ function ProductContainer() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/products');
+      const response = await axios.get('https://oakly-backend-1.onrender.com/products');
       setProducts(response.data);
 
       const product = response.data.find(p => p.id === parseInt(itemId));
@@ -93,7 +93,7 @@ function ProductContainer() {
 
   const fetchRelatedProducts = async (category, excludedProductId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/products?category=${category}`);
+      const response = await axios.get(`https://oakly-backend-1.onrender.com/products?category=${category}`);
       const filteredProducts = response.data.filter(product => product.id !== excludedProductId);
       setRelatedProducts(filteredProducts);
     } catch (error) {
@@ -130,7 +130,7 @@ function ProductContainer() {
                 {product.image_url && (
                   <StyledCardMedia
                     component="img"
-                    image={product.image_url.startsWith('http') ? product.image_url : `http://localhost:5000${product.image_url}`}
+                    image={product.image_url.startsWith('http') ? product.image_url : `https://oakly-backend-1.onrender.com${product.image_url}`}
                     alt={product.name}
                   />
                 )}
@@ -152,7 +152,7 @@ function ProductContainer() {
           {selectedProduct.image_url && (
             <ProductImage
               component="img"
-              image={selectedProduct.image_url.startsWith('http') ? selectedProduct.image_url : `http://localhost:5000${selectedProduct.image_url}`}
+              image={selectedProduct.image_url.startsWith('http') ? selectedProduct.image_url : `https://oakly-backend-1.onrender.com${selectedProduct.image_url}`}
               alt={selectedProduct.name}
             />
           )}
@@ -203,7 +203,7 @@ function ProductContainer() {
                   {product.image_url && (
                     <StyledCardMedia
                       component="img"
-                      image={product.image_url.startsWith('http') ? product.image_url : `http://localhost:5000${product.image_url}`}
+                      image={product.image_url.startsWith('http') ? product.image_url : `https://oakly-backend-1.onrender.com${product.image_url}`}
                       alt={product.name}
                     />
                   )}

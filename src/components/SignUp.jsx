@@ -30,7 +30,7 @@ export default function SignUp() {
 
     try {
       const userData = { name, email, phone, password };
-      await axios.post('http://127.0.0.1:5000/auth/register', userData);
+      await axios.post('https://oakly-backend-1.onrender.com/auth/register', userData);
       navigate('/signin'); // Redirect to SignIn
     } catch (error) {
       console.error('Error signing up:', error);

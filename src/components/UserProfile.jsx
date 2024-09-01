@@ -26,7 +26,7 @@ const UserProfile = () => {
 
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/user", {
+        const response = await fetch("https://oakly-backend-1.onrender.com/api/user", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const UserProfile = () => {
     }
   
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/user", {
+      const response = await fetch("https://oakly-backend-1.onrender.com/api/user", {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`, // Add Authorization header
