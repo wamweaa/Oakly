@@ -210,7 +210,7 @@ function ProductContainer() {
               <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
                 <StyledCard onClick={() => handleProductClick(product)} style={{ cursor: 'pointer' }}>
                   {product.image_url && (
-                    <StyledCardMedia
+                    <CardMedia
                       component="img"
                       image={product.image_url.startsWith('http') ? product.image_url : `https://oakly-backend-1.onrender.com${product.image_url}`}
                       alt={product.name}
